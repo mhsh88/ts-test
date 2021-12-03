@@ -1,0 +1,23 @@
+spring.cloud.stream:
+  function:
+    definition: eventConsumer
+  bindings:
+    eventConsumer-in-0:
+      destination: event-topic
+  kafka:
+    bindings:
+      eventConsumer-in-0:
+        consumer:
+          configuration:
+            value:
+              deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    binder:
+      brokers:
+        - localhost:9091
+        - localhost:9092
+server:
+  port: 12346
+
+logging:
+  level:
+    org.springframework.data.mongodb.core.ReactiveMongoTemplate: DEBUG
